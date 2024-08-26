@@ -34,15 +34,15 @@ const Login = () => {
         if (!isSignInForm) {
             createUserWithEmailAndPassword(auth, email.current.value, password.current.value).then((userCredential) => {
                 const user = userCredential.user;
-                console.log(user);
+                //console.log(user);
                 updateProfile(user, {
                     displayName: name.current.value, photoURL: USER_AVATAR
                   }).then(() => {
                     // Profile updated!
                     const {uid, email, displayName, photoURL} = auth.currentUser;
                     dispatch(addUser({uid: uid, email: email, displayName: displayName, photoURL: photoURL}));
-                    console.log("Profile Updated");
-                    console.log(user);
+                    //console.log("Profile Updated");
+                    //console.log(user);
                   }).catch((error) => {
                     setErrorMessage(error.code + "-" + error.message);
                   });
@@ -56,7 +56,7 @@ const Login = () => {
             signInWithEmailAndPassword(auth, email.current.value, password.current.value)
                 .then((userCredential) => {
                     const user = userCredential.user;
-                    console.log(user);
+                    //console.log(user);
                 })
                 .catch((error) => {
                     //   const errorCode = error.code;
