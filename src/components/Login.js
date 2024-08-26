@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
 import Header from "./Header";
-import { checkData } from "./utils/validate";
+import { checkData } from "../utils/validate";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "./utils/firebase";
+import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
-import { addUser } from "./utils/userSlice";
-import { USER_AVATAR } from "./utils/constants";
+import { addUser } from "../utils/userSlice";
+import { USER_AVATAR } from "../utils/constants";
 
 
 const Login = () => {
