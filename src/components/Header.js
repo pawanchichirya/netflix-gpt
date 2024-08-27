@@ -51,15 +51,15 @@ const Header = () => {
     }
 
     return (
-        <div className="absolute px-8 py-2 w-screen bg-gradient-to-b from-black z-10 flex justify-between">
+        <div className="absolute px-8 py-2 w-screen bg-gradient-to-b from-black z-10 flex flex-col md:flex-row md:justify-between">
             <img src= {LOGO}
-                alt="logo" className="w-44 " />
+                alt="logo" className="w-44 mx-auto md:mx-0" />
             {user?.user && <div className = "flex items-center justify-between p-2">
                 {showGptSearch && (<select className="py-2 px-4 mt-2 bg-red-800 text-white" onChange={handleLanguageChange}>
                     {SUPPORTED_LANGUAGES.map((lang) => <option key={lang.identifier} value={lang.identifier}>{lang.name}</option>)}
                 </select>)}
                 <button className='py-2 px-4 mx-4 mt-2 bg-red-800 text-white rounded-lg' onClick={handleGptSearchClick}>{showGptSearch ? "Home Page" : "GPT Search"}</button>
-                <img alt="usericon" src={user?.user?.photoURL} className="w-10 h-10" />
+                <img alt="usericon" src={user?.user?.photoURL} className="w-10 h-10 hidden md:inline-block" />
                 <button className="font-bold text-white" onClick={handleSignOut}>Sign Out</button>
             </div>}
             
