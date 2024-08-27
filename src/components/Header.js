@@ -12,6 +12,7 @@ import { changeLanguage } from '../utils/configSlice';
 const Header = () => {
     const navigate = useNavigate();
     const user = useSelector(store => store.user);
+    const showGptSearch = useSelector(store => store.gpt.showGptSearch);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -40,6 +41,9 @@ const Header = () => {
 
     const handleGptSearchClick = () => {
         dispatch(toggleGptSearchView());
+        if(!showGptSearch) {
+            dispatch(changeLanguage("en"));
+        }
     }
 
     const handleLanguageChange = (e) => {
@@ -51,10 +55,10 @@ const Header = () => {
             <img src= {LOGO}
                 alt="logo" className="w-44 " />
             {user?.user && <div className = "flex items-center justify-between p-2">
-                <select className="py-2 px-4 mt-2 bg-red-800 text-white" onChange={handleLanguageChange}>
+                {showGptSearch && (<select className="py-2 px-4 mt-2 bg-red-800 text-white" onChange={handleLanguageChange}>
                     {SUPPORTED_LANGUAGES.map((lang) => <option key={lang.identifier} value={lang.identifier}>{lang.name}</option>)}
-                </select>
-                <button className='py-2 px-4 mx-4 mt-2 bg-red-800 text-white rounded-lg' onClick={handleGptSearchClick}>GPT Search</button>
+                </select>)}
+                <button className='py-2 px-4 mx-4 mt-2 bg-red-800 text-white rounded-lg' onClick={handleGptSearchClick}>{showGptSearch ? "Home Page" : "GPT Search"}</button>
                 <img alt="usericon" src={user?.user?.photoURL} className="w-10 h-10" />
                 <button className="font-bold text-white" onClick={handleSignOut}>Sign Out</button>
             </div>}
